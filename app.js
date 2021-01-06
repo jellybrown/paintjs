@@ -1,9 +1,9 @@
-const canvas = document.getElementById("jsCanvas");
+const canvas = document.querySelector("#jsCanvas");
 const ctx = canvas.getContext("2d");
-const colors = document.getElementsByClassName("jsColor");
-const range = document.getElementById("jsRange");
-const mode = document.getElementById("jsMode");
-const saveBtn = document.getElementById("jsSave");
+const colors = document.querySelectorAll(".jsColor");
+const range = document.querySelector("#jsRange");
+const mode = document.querySelector("#jsMode");
+const saveBtn = document.querySelector("#jsSave");
 
 const INITIAL_COLOR = "#2c2c2c";
 const CANVAS_SIZE = 700;
@@ -87,7 +87,7 @@ if (canvas) {
   canvas.addEventListener("contextmenu", handleCM);
 }
 
-Array.from(colors).forEach(color =>
+Array.from(colors).forEach((color) =>
   color.addEventListener("click", handleColorClick)
 );
 
