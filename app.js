@@ -5,6 +5,8 @@ const range = document.querySelector("#jsRange");
 const mode = document.querySelector("#jsMode");
 const saveBtn = document.querySelector("#jsSave");
 
+const colorBox = document.querySelector("#jsColors");
+
 const INITIAL_COLOR = "#2c2c2c";
 const CANVAS_SIZE = 700;
 
@@ -41,9 +43,13 @@ function onMouseMove(event) {
 }
 
 function handleColorClick(event) {
-  const color = event.target.style.backgroundColor;
-  ctx.strokeStyle = color;
-  ctx.fillStyle = color;
+  console.log("hey");
+  const clikedColor = event.target;
+  if (clikedColor.classList.contains("jsColor")) {
+    const color = clikedColor.style.backgroundColor;
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+  }
 }
 function handleRangechange(event) {
   const size = event.target.value;
@@ -87,9 +93,12 @@ if (canvas) {
   canvas.addEventListener("contextmenu", handleCM);
 }
 
-Array.from(colors).forEach((color) =>
-  color.addEventListener("click", handleColorClick)
-);
+// Array.from(colors).forEach((color) =>
+//   color.addEventListener("click", handleColorClick)
+// );
+
+// 컬러선택 target으로 바꾸기 (이벤트 위임)
+colorBox.addEventListener("click", handleColorClick);
 
 if (range) {
   range.addEventListener("input", handleRangechange);
